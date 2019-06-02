@@ -4,12 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="testDao" class="ru.otus.spring01.dao.TestDaoSimple">
+    <bean id="testDao" class="ru.otus.spring01.dao.TestDaoCSV">
         <constructor-arg name="path" value="test.csv"/>
     </bean>
 
     <bean id="testService" class="ru.otus.spring01.service.TestServiceImpl">
         <constructor-arg name="dao" ref="testDao"/>
+    </bean>
+
+    <bean id="studentService" class="ru.otus.spring01.service.StudentServiceImpl">
+    </bean>
+
+    <bean id="testReportService" class="ru.otus.spring01.service.TestReportServiceImpl">
     </bean>
 
 </beans>

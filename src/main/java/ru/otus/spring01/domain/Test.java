@@ -1,20 +1,16 @@
 package ru.otus.spring01.domain;
 
+import java.util.List;
+
 public class Test {
 
-    private String name;
-    private int age;
+    private List<Question> questions;
 
-    public Test(String name, int age) {
-        this.name = name;
-        this.age = age;
+    public Test(List<Question> questions) {
+        this.questions = questions;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
+    public List<Question> getQuestions() {
+        return questions;
     }
 }

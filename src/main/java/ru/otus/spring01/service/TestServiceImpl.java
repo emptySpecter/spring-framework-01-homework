@@ -11,4 +11,8 @@ public class TestServiceImpl implements TestService {
         this.dao = dao;
     }
 
+    @Override
+    public Test getTest() {
+        return dao.getTest();
+    }
 }
