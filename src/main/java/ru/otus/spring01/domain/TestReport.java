@@ -4,7 +4,7 @@ public class TestReport {
 
     private Student student;
 
-    private int  numberOfQuestions;
+    private int numberOfQuestions;
     private int numberOfPositiveAnswers;
 
     public TestReport(Student student, int numberOfQuestions, int numberOfPositiveAnswers) {

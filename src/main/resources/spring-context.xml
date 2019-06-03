@@ -15,7 +15,7 @@
     <bean id="studentService" class="ru.otus.spring01.service.StudentServiceImpl">
     </bean>
 
-    <bean id="testReportService" class="ru.otus.spring01.service.TestReportServiceImpl">
+    <bean id="testingService" class="ru.otus.spring01.service.TestingServiceImpl">
     </bean>
 
 </beans>

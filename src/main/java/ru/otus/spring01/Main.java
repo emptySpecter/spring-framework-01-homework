@@ -1,14 +1,10 @@
 package ru.otus.spring01;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.otus.spring01.domain.Question;
-import ru.otus.spring01.domain.Student;
 import ru.otus.spring01.domain.TestReport;
 import ru.otus.spring01.service.StudentService;
-import ru.otus.spring01.service.TestReportService;
 import ru.otus.spring01.service.TestService;
-
-import java.util.List;
+import ru.otus.spring01.service.TestingService;
 
 public class Main {
 
@@ -16,21 +12,11 @@ public class Main {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
 
         TestService testService = context.getBean(TestService.class);
-        List<Question> questions = testService.getTest().getQuestions();
-/*
-        for (Question question: questions) {
-            System.out.println();
-            System.out.println(question);
-        }
-*/
-
         StudentService studentService = context.getBean(StudentService.class);
-        Student student = studentService.newStudent();
+        TestingService testingService = context.getBean(TestingService.class);
 
-        System.out.println(student);
-
-        TestReportService testReportService = context.getBean(TestReportService.class);
-        testReportService.printReport(new TestReport(student, 5, 3));
+        TestReport testReport = testingService.Testing(studentService.newStudent(), testService.getTest());
+        testingService.printReport(testReport);
 
     }
 }
