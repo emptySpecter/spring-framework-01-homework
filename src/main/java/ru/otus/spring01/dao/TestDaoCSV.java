@@ -25,7 +25,7 @@ public class TestDaoCSV implements TestDao {
                     int indexOfPostiveAnswer = Integer.valueOf(terms[len - 1]);
                     questions.add(new Question(terms[0], new ArrayList<>(Arrays.asList(Arrays.copyOfRange(terms, 1, len - 1))), indexOfPostiveAnswer));
                 }catch (NumberFormatException e){
-
+                    System.out.println("Incorrect question " + terms[0]);
                 }
               }
         }
