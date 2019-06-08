@@ -1,16 +1,12 @@
 package ru.otus.spring01.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.util.List;
 
+@AllArgsConstructor
 public class Test {
-
+    @Getter
     private List<Question> questions;
-
-    public Test(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
 }

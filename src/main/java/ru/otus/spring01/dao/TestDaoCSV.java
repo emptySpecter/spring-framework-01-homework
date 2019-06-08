@@ -1,5 +1,6 @@
 package ru.otus.spring01.dao;
 
+import lombok.Getter;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Test;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
+@Getter
 public class TestDaoCSV implements TestDao {
 
     private Test test;
@@ -30,9 +31,5 @@ public class TestDaoCSV implements TestDao {
             }
         }
         test = new Test(questions);
-    }
-
-    public Test getTest() {
-        return test;
     }
 }

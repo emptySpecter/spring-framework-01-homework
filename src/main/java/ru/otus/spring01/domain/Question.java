@@ -1,7 +1,11 @@
 package ru.otus.spring01.domain;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.List;
 
+@Getter @ToString
 public class Question {
 
     private String question;
@@ -12,26 +16,5 @@ public class Question {
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public List<String> getAnswers() {
-        return answers;
-    }
-
-    public int getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "question='" + question + '\'' +
-                ", answers=" + answers +
-                ", correctAnswer=" + correctAnswer +
-                '}';
     }
 }

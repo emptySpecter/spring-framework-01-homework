@@ -1,5 +1,6 @@
 package ru.otus.spring01.service;
 
+import lombok.AllArgsConstructor;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Student;
 import ru.otus.spring01.domain.Test;
@@ -8,12 +9,9 @@ import ru.otus.spring01.domain.TestReport;
 import java.util.List;
 import java.util.Scanner;
 
+@AllArgsConstructor
 public class TestingServiceImpl implements TestingService {
     private ConsoleService console;
-
-    public TestingServiceImpl(ConsoleService console) {
-        this.console = console;
-    }
 
     @Override
     public TestReport Testing(Student student, Test test) {

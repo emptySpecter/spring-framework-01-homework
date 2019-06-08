@@ -2,7 +2,6 @@ package ru.otus.spring01.service;
 
 import ru.otus.spring01.domain.Student;
 
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class StudentServiceImpl implements StudentService {

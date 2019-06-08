@@ -1,28 +1,11 @@
 package ru.otus.spring01.domain;
 
-public class Student {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter @ToString @AllArgsConstructor
+public class Student {
     private String firstName;
     private String lastName;
-
-    public Student(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
 }
