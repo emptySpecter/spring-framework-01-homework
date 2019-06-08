@@ -5,7 +5,8 @@ import lombok.ToString;
 
 import java.util.List;
 
-@Getter @ToString
+@Getter
+@ToString
 public class Question {
 
     private String question;

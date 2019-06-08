@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
 @Getter
 public class TestDaoCSV implements TestDao {
 
@@ -21,11 +22,11 @@ public class TestDaoCSV implements TestDao {
         while (scanner.hasNextLine()) {
             String[] terms = scanner.nextLine().split(";");
             int len = terms.length;
-            if(len >= 3) {
+            if (len >= 3) {
                 try {
                     int indexOfPostiveAnswer = Integer.valueOf(terms[len - 1]);
                     questions.add(new Question(terms[0], new ArrayList<>(Arrays.asList(Arrays.copyOfRange(terms, 1, len - 1))), indexOfPostiveAnswer));
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Incorrect question " + terms[0]);
                 }
             }

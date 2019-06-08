@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter @ToString @AllArgsConstructor
+@Getter
+@ToString
+@AllArgsConstructor
 public class Student {
     private String firstName;
     private String lastName;
