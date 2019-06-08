@@ -20,14 +20,7 @@ public class TestDaoCSV implements TestDao {
         while (scanner.hasNextLine()) {
             String[] terms = scanner.nextLine().split(";");
             int len = terms.length;
-            if(len >= 3) {
-                try {
-                    int indexOfPostiveAnswer = Integer.valueOf(terms[len - 1]);
-                    questions.add(new Question(terms[0], new ArrayList<>(Arrays.asList(Arrays.copyOfRange(terms, 1, len - 1))), indexOfPostiveAnswer));
-                }catch (NumberFormatException e){
-
-                }
-              }
+            questions.add(new Question(terms[0], new ArrayList<>(Arrays.asList(Arrays.copyOfRange(terms, 1, len - 1))), Integer.valueOf(terms[len - 1])));
         }
         test = new Test(questions);
     }
