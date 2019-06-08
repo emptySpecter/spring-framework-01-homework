@@ -9,24 +9,28 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TestingServiceImpl implements TestingService {
+    private ConsoleService console;
+
+    public TestingServiceImpl(ConsoleService console) {
+        this.console = console;
+    }
 
     @Override
     public TestReport Testing(Student student, Test test) {
-        Scanner scanner = new Scanner(System.in);
         List<Question> questions = test.getQuestions();
         int numberOfQuestions = questions.size();
         int numberOfPositiveAnswers = 0;
 
         for (Question question : questions) {
-            System.out.println();
-            System.out.println(question.getQuestion());
+           console.writeLine("");
+           console.writeLine(question.getQuestion());
             int questionNo = 1;
             for (String answer : question.getAnswers()) {
-                System.out.printf("%d. %s \n", questionNo++, answer);
+                console.writeLine(String.format("%d. %s \n",  questionNo++, answer));
             }
             while (true) {
-                System.out.println("Введите номер (одну цифру) предлагаемого вами ответа: ");
-                String answ = scanner.next();
+               console.writeLine("Введите номер (одну цифру) предлагаемого вами ответа: ");
+                String answ = console.readLine();
                 if (answ.matches("\\d")) {
                     int no = Integer.valueOf(answ);
                     if (0 < no && no < questionNo) {
@@ -36,19 +40,19 @@ public class TestingServiceImpl implements TestingService {
                 }
             }
         }
-        System.out.println();
+       console.writeLine("");
 
         return new TestReport(student, numberOfQuestions, numberOfPositiveAnswers);
     }
 
     @Override
     public void printReport(TestReport report) {
-        System.out.println();
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("Результаты тестирования");
-        System.out.println("студент:  " + report.getStudent().getFirstName() + " " + report.getStudent().getLastName());
-        System.out.printf("%d правильных ответов из %d .", report.getNumberOfPositiveAnswers(), report.getNumberOfQuestions());
-        System.out.println();
-        System.out.println("-------------------------------------------------------------------------------------");
+       console.writeLine("");
+       console.writeLine("-------------------------------------------------------------------------------------");
+       console.writeLine("Результаты тестирования");
+       console.writeLine("студент:  " + report.getStudent().getFirstName() + " " + report.getStudent().getLastName());
+       console.writeLine(String.format("%d правильных ответов из %d .", report.getNumberOfPositiveAnswers(), report.getNumberOfQuestions()));
+       console.writeLine("");
+       console.writeLine("-------------------------------------------------------------------------------------");
     }
 }

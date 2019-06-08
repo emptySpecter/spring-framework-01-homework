@@ -7,32 +7,33 @@ import java.util.regex.Pattern;
 
 public class StudentServiceImpl implements StudentService {
 
+    private ConsoleService console;
 
-    public StudentServiceImpl() {
+    public StudentServiceImpl(ConsoleService console) {
+        this.console = console;
     }
 
     private Pattern ruNamePattern = Pattern.compile("[А-ЯЁ][-А-яЁё]+");
 
     @Override
     public Student newStudent() {
-        Scanner scanner = new Scanner(System.in);
         String firstName, lastName;
         while (true) {
-            System.out.println("Введите ваше имя и нажмите клавишу Enter:");
-            firstName = scanner.nextLine();
+            console.writeLine("Введите ваше имя и нажмите клавишу Enter:");
+            firstName = console.readLine();
             if (ruNamePattern.matcher(firstName).matches()) break;
-            System.out.println("Имя - одно слово в русском алфавите (допускается дефис) с заглавной буквы!");
+            console.writeLine("Имя - одно слово в русском алфавите (допускается дефис) с заглавной буквы!");
         }
         while (true) {
-            System.out.println("Введите вашу фамилию и нажмите клавишу Enter:");
-            lastName = scanner.nextLine();
+            console.writeLine("Введите вашу фамилию и нажмите клавишу Enter:");
+            lastName = console.readLine();
             if (ruNamePattern.matcher(firstName).matches()) break;
-            System.out.println("Фамилия - одно слово в русском алфавите (допускается дефис) с заглавной буквы!");
+            console.writeLine("Фамилия - одно слово в русском алфавите (допускается дефис) с заглавной буквы!");
         }
 
-        System.out.println();
-        System.out.println("Введено имя: " + firstName + ", фамилия: " + lastName);
-        System.out.println();
+        console.writeLine("");
+        console.writeLine("Введено имя: " + firstName + ", фамилия: " + lastName);
+        console.writeLine("");
 
         return new Student(firstName, lastName);
     }
