@@ -1,8 +1,10 @@
 package ru.otus.spring01.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.TestReport;
 
+@Service
 @AllArgsConstructor
 public class TestingRunnerServiceImpl implements TestingRunnerService {
     private TestService testService;

@@ -1,6 +1,7 @@
 package ru.otus.spring01.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Student;
 import ru.otus.spring01.domain.Test;
@@ -8,6 +9,7 @@ import ru.otus.spring01.domain.TestReport;
 
 import java.util.List;
 
+@Service
 @AllArgsConstructor
 public class TestingServiceImpl implements TestingService {
     private CommunicationService console;

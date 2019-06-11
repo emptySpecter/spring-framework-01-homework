@@ -1,9 +1,11 @@
 package ru.otus.spring01.service;
 
+import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.Student;
 
 import java.util.regex.Pattern;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
     private CommunicationService console;
