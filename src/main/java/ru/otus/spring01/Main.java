@@ -1,13 +1,13 @@
 package ru.otus.spring01;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import ru.otus.spring01.dao.TestDao;
 import ru.otus.spring01.dao.TestDaoCSV;
 import ru.otus.spring01.service.TestingRunnerService;
 
+@PropertySource("classpath:application.properties")
 @ComponentScan("ru.otus.spring01")
 @Configuration
 public class Main {
@@ -21,7 +21,7 @@ public class Main {
     }
 
     @Bean
-    public TestDao testDao() {
-        return new TestDaoCSV("test.csv");
+    public static TestDao testDao(@Value("${testfile}") String path) {
+        return new TestDaoCSV(path);
     }
 }
