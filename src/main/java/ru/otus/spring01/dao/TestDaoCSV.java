@@ -1,7 +1,6 @@
 package ru.otus.spring01.dao;
 
 import lombok.Getter;
-import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Test;
 
@@ -11,14 +10,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-@Service
+
 @Getter
 public class TestDaoCSV implements TestDao {
 
     private Test test;
 
-    public TestDaoCSV() {
-        String path = "test.csv";
+    public TestDaoCSV(String path) {
         InputStream stream = TestDaoCSV.class.getResourceAsStream(path);
         Scanner scanner = new Scanner(stream);
         List<Question> questions = new ArrayList<>();
