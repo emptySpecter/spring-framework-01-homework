@@ -10,10 +10,10 @@ import java.util.List;
 
 @AllArgsConstructor
 public class TestingServiceImpl implements TestingService {
-    private ConsoleService console;
+    private CommunicationService console;
 
     @Override
-    public TestReport Testing(Student student, Test test) {
+    public TestReport testing(Student student, Test test) {
         List<Question> questions = test.getQuestions();
         int numberOfQuestions = questions.size();
         int numberOfPositiveAnswers = 0;

@@ -2,7 +2,7 @@ package ru.otus.spring01.service;
 
 import java.util.Scanner;
 
-public class ConsoleServiceImpl implements ConsoleService {
+public class CommunicationServiceImpl implements CommunicationService {
     private Scanner scanner = new Scanner(System.in);
 
     @Override

@@ -1,6 +1,6 @@
 package ru.otus.spring01.service;
 
-public interface ConsoleService {
+public interface CommunicationService {
     void writeLine(String string);
 
     String readLine();

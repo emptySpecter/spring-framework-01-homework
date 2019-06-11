@@ -12,15 +12,19 @@
         <constructor-arg name="dao" ref="testDao"/>
     </bean>
 
-    <bean id="consoleService" class="ru.otus.spring01.service.ConsoleServiceImpl">
+    <bean id="communicationService" class="ru.otus.spring01.service.CommunicationServiceImpl">
     </bean>
 
     <bean id="studentService" class="ru.otus.spring01.service.StudentServiceImpl">
-        <constructor-arg name="console" ref="consoleService"/>
+        <constructor-arg name="console" ref="communicationService"/>
     </bean>
 
     <bean id="testingService" class="ru.otus.spring01.service.TestingServiceImpl">
-        <constructor-arg name="console" ref="consoleService"/>
+        <constructor-arg name="console" ref="communicationService"/>
     </bean>
-
+    <bean id="testingRunnerService" class="ru.otus.spring01.service.TestingRunnerServiceImpl">
+        <constructor-arg name="testService" ref="testService"/>
+        <constructor-arg name="testingService" ref="testingService"/>
+        <constructor-arg name="studentService" ref="studentService"/>
+    </bean>
 </beans>

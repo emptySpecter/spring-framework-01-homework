@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 
 public class StudentServiceImpl implements StudentService {
 
-    private ConsoleService console;
+    private CommunicationService console;
 
-    public StudentServiceImpl(ConsoleService console) {
+    public StudentServiceImpl(CommunicationService console) {
         this.console = console;
     }
 

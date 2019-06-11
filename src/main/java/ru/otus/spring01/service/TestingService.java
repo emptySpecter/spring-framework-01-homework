@@ -5,7 +5,7 @@ import ru.otus.spring01.domain.Test;
 import ru.otus.spring01.domain.TestReport;
 
 public interface TestingService {
-    TestReport Testing(Student student, Test test);
+    TestReport testing(Student student, Test test);
 
     void printReport(TestReport report);
 }
