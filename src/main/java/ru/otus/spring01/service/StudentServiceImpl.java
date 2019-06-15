@@ -1,6 +1,6 @@
 package ru.otus.spring01.service;
 
-import org.springframework.cglib.core.Local;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.Student;
@@ -13,32 +13,43 @@ public class StudentServiceImpl implements StudentService {
 
     private CommunicationService console;
     private MessageSource messageSource;
+    private String language;
+    private String country;
 
-    public StudentServiceImpl(CommunicationService console, MessageSource messageSource) {
+    private Pattern namePattern;
+
+    public StudentServiceImpl(CommunicationService console, MessageSource messageSource, @Value("${locale.language:}") String language, @Value("${locale.country:}") String country) {
         this.console = console;
         this.messageSource = messageSource;
+        this.language = language;
+        this.country = country;
     }
 
-    private Pattern ruNamePattern = Pattern.compile("[А-ЯЁ][-А-яЁё]+");
 
     @Override
     public Student newStudent() {
         String firstName, lastName;
-        while (true) {
-            console.writeLine(messageSource.getMessage("enter.firstname", new String[]{},Locale.ENGLISH));
-            firstName = console.readLine();
-            if (ruNamePattern.matcher(firstName).matches()) break;
-            console.writeLine("Имя - одно слово в русском алфавите (допускается дефис) с заглавной буквы!");
+        String[] strings = {};
+        Locale locale = new Locale(language, country);
+        if (namePattern == null) {
+            namePattern = Pattern.compile(messageSource.getMessage("name.validation", strings, locale));
         }
         while (true) {
-            console.writeLine("Введите вашу фамилию и нажмите клавишу Enter:");
+            console.writeLine(messageSource.getMessage("firstname.enter", strings, locale));
+            firstName = console.readLine();
+            if (namePattern.matcher(firstName).matches()) break;
+            console.writeLine(messageSource.getMessage("firstname.advice", strings, locale));
+        }
+        while (true) {
+            console.writeLine(messageSource.getMessage("lastname.enter", strings, locale));
             lastName = console.readLine();
-            if (ruNamePattern.matcher(firstName).matches()) break;
-            console.writeLine("Фамилия - одно слово в русском алфавите (допускается дефис) с заглавной буквы!");
+            if (namePattern.matcher(lastName).matches()) break;
+            console.writeLine(messageSource.getMessage("lastname.advice", strings, locale));
         }
 
+        strings = new String[]{firstName, lastName};
         console.writeLine("");
-        console.writeLine("Введено имя: " + firstName + ", фамилия: " + lastName);
+        console.writeLine(messageSource.getMessage("confirmation", strings, locale));
         console.writeLine("");
 
         return new Student(firstName, lastName);

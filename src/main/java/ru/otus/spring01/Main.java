@@ -1,16 +1,13 @@
 package ru.otus.spring01;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import ru.otus.spring01.dao.TestDao;
 import ru.otus.spring01.dao.TestDaoCSV;
 import ru.otus.spring01.service.TestingRunnerService;
 
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -34,7 +31,7 @@ public class Main {
     public static TestDao testDao(@Value("${testfile}") String path) {
         Path pth = Paths.get(path);
         URI uri = Paths.get(path).toUri();
-        if (!pth.toFile().exists()){
+        if (!pth.toFile().exists()) {
             try {
                 URL url = Main.class.getClassLoader().getResource(path);
                 uri = url.toURI();
