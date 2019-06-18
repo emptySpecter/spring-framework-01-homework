@@ -1,6 +1,7 @@
 package ru.otus.spring01.service;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Student;
@@ -8,11 +9,21 @@ import ru.otus.spring01.domain.Test;
 import ru.otus.spring01.domain.TestReport;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
-@AllArgsConstructor
 public class TestingServiceImpl implements TestingService {
     private CommunicationService console;
+    private MessageSource messageSource;
+    private String[] strings;
+    private Locale locale;
+
+    public TestingServiceImpl(CommunicationService console, MessageSource messageSource, @Value("${locale.language:}") String language, @Value("${locale.country:}") String country) {
+        this.console = console;
+        this.messageSource = messageSource;
+        locale = new Locale(language, country);
+
+    }
 
     @Override
     public TestReport testing(Student student, Test test) {
@@ -28,7 +39,7 @@ public class TestingServiceImpl implements TestingService {
                 console.writeLine(String.format("%d. %s \n", questionNo++, answer));
             }
             while (true) {
-                console.writeLine("Введите номер (одну цифру) предлагаемого вами ответа: ");
+                console.writeLine(messageSource.getMessage("testing.prompt", strings, locale));
                 String answ = console.readLine();
                 if (answ.matches("\\d")) {
                     int no = Integer.valueOf(answ);
@@ -48,9 +59,10 @@ public class TestingServiceImpl implements TestingService {
     public void printReport(TestReport report) {
         console.writeLine("");
         console.writeLine("-------------------------------------------------------------------------------------");
-        console.writeLine("Результаты тестирования");
-        console.writeLine("студент:  " + report.getStudent().getFirstName() + " " + report.getStudent().getLastName());
-        console.writeLine(String.format("%d правильных ответов из %d .", report.getNumberOfPositiveAnswers(), report.getNumberOfQuestions()));
+        console.writeLine(messageSource.getMessage("report.line1", strings, locale));
+        console.writeLine(messageSource.getMessage("report.line2", strings, locale) + "  " + report.getStudent().getFirstName() + " " + report.getStudent().getLastName());
+        strings = new String[]{String.valueOf(report.getNumberOfPositiveAnswers()), String.valueOf(report.getNumberOfQuestions())};
+        console.writeLine(messageSource.getMessage("report.line3", strings, locale));
         console.writeLine("");
         console.writeLine("-------------------------------------------------------------------------------------");
     }

@@ -28,9 +28,10 @@ public class Main {
     }
 
     @Bean
-    public static TestDao testDao(@Value("${testfile}") String path) {
+    public static TestDao testDao(@Value("${testfile}") String path, @Value("${locale.language:}") String language, @Value("${locale.country:}") String country) {
         Path pth = Paths.get(path);
         URI uri = Paths.get(path).toUri();
+
         if (!pth.toFile().exists()) {
             try {
                 URL url = Main.class.getClassLoader().getResource(path);
@@ -41,6 +42,20 @@ public class Main {
                 System.exit(888);
             }
 
+        }
+
+        int index = path.lastIndexOf('.');
+        String beginPart, endPart;
+        if (index != -1) {
+            beginPart = path.substring(0, index);
+            endPart = path.substring(index);
+        } else {
+            beginPart = path;
+            endPart = "";
+        }
+        Path probePath = Paths.get(beginPart + "_" + language + "_" + country + endPart);
+        if (probePath.toFile().exists()) {
+            uri = probePath.toUri();
         }
         return new TestDaoCSV(uri);
     }
