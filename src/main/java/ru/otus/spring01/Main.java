@@ -1,18 +1,12 @@
 package ru.otus.spring01;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import ru.otus.spring01.dao.TestDao;
 import ru.otus.spring01.dao.TestDaoCSV;
+import ru.otus.spring01.service.LocalFileNameService;
 import ru.otus.spring01.service.TestingRunnerService;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @PropertySource("classpath:application.properties")
 @ComponentScan("ru.otus.spring01")
@@ -28,36 +22,9 @@ public class Main {
     }
 
     @Bean
-    public static TestDao testDao(@Value("${testfile}") String path, @Value("${locale.language:}") String language, @Value("${locale.country:}") String country) {
-        Path pth = Paths.get(path);
-        URI uri = Paths.get(path).toUri();
+    public static TestDao testDao(LocalFileNameService localFileNameService) {
 
-        if (!pth.toFile().exists()) {
-            try {
-                URL url = Main.class.getClassLoader().getResource(path);
-                uri = url.toURI();
-            } catch (URISyntaxException | NullPointerException e) {
-                System.out.println("Test file not found");
-                e.printStackTrace();
-                System.exit(888);
-            }
-
-        }
-
-        int index = path.lastIndexOf('.');
-        String beginPart, endPart;
-        if (index != -1) {
-            beginPart = path.substring(0, index);
-            endPart = path.substring(index);
-        } else {
-            beginPart = path;
-            endPart = "";
-        }
-        Path probePath = Paths.get(beginPart + "_" + language + "_" + country + endPart);
-        if (probePath.toFile().exists()) {
-            uri = probePath.toUri();
-        }
-        return new TestDaoCSV(uri);
+        return new TestDaoCSV(localFileNameService.get());
     }
 
     @Bean

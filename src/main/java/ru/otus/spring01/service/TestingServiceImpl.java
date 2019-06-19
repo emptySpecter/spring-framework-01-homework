@@ -1,7 +1,5 @@
 package ru.otus.spring01.service;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Student;
@@ -9,19 +7,22 @@ import ru.otus.spring01.domain.Test;
 import ru.otus.spring01.domain.TestReport;
 
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class TestingServiceImpl implements TestingService {
-    private CommunicationService console;
-    private MessageSource messageSource;
-    private String[] strings;
-    private Locale locale;
 
-    public TestingServiceImpl(CommunicationService console, MessageSource messageSource, @Value("${locale.language:}") String language, @Value("${locale.country:}") String country) {
+    private static final String TESTING_PROMPT = "testing.prompt";
+    private static final String REPORT_LINE_1 = "report.line1";
+    private static final String REPORT_LINE_2 = "report.line2";
+    private static final String REPORT_LINE_3 = "report.line3";
+
+    private CommunicationService console;
+    private MessageLocalizationService localizationService;
+
+
+    public TestingServiceImpl(CommunicationService console, MessageLocalizationService localizationService) {
         this.console = console;
-        this.messageSource = messageSource;
-        locale = new Locale(language, country);
+        this.localizationService = localizationService;
 
     }
 
@@ -39,7 +40,7 @@ public class TestingServiceImpl implements TestingService {
                 console.writeLine(String.format("%d. %s \n", questionNo++, answer));
             }
             while (true) {
-                console.writeLine(messageSource.getMessage("testing.prompt", strings, locale));
+                console.writeLine(localizationService.getLocalMessage(TESTING_PROMPT));
                 String answ = console.readLine();
                 if (answ.matches("\\d")) {
                     int no = Integer.valueOf(answ);
@@ -59,10 +60,9 @@ public class TestingServiceImpl implements TestingService {
     public void printReport(TestReport report) {
         console.writeLine("");
         console.writeLine("-------------------------------------------------------------------------------------");
-        console.writeLine(messageSource.getMessage("report.line1", strings, locale));
-        console.writeLine(messageSource.getMessage("report.line2", strings, locale) + "  " + report.getStudent().getFirstName() + " " + report.getStudent().getLastName());
-        strings = new String[]{String.valueOf(report.getNumberOfPositiveAnswers()), String.valueOf(report.getNumberOfQuestions())};
-        console.writeLine(messageSource.getMessage("report.line3", strings, locale));
+        console.writeLine(localizationService.getLocalMessage(REPORT_LINE_1));
+        console.writeLine(localizationService.getLocalMessage(REPORT_LINE_2) + "  " + report.getStudent().getFirstName() + " " + report.getStudent().getLastName());
+        console.writeLine(localizationService.getLocalMessageParams(REPORT_LINE_3, new String[]{String.valueOf(report.getNumberOfPositiveAnswers()), String.valueOf(report.getNumberOfQuestions())}));
         console.writeLine("");
         console.writeLine("-------------------------------------------------------------------------------------");
     }
