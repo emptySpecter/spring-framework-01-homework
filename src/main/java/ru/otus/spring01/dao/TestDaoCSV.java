@@ -4,20 +4,28 @@ import lombok.Getter;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Test;
 
-import java.io.InputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
 
 @Getter
 public class TestDaoCSV implements TestDao {
 
     private Test test;
 
-    public TestDaoCSV(String path) {
-        InputStream stream = TestDaoCSV.class.getResourceAsStream(path);
-        Scanner scanner = new Scanner(stream);
+    public TestDaoCSV(URI uri) {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(Paths.get(uri));
+        } catch (IOException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+        }
         List<Question> questions = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String[] terms = scanner.nextLine().split(";");
