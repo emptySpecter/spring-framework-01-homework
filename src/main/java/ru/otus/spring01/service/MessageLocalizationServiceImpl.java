@@ -1,6 +1,5 @@
 package ru.otus.spring01.service;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +14,9 @@ public class MessageLocalizationServiceImpl implements MessageLocalizationServic
     private Locale locale;
 
 
-    public MessageLocalizationServiceImpl(MessageSource messageSource, @Value("${locale.language:}") String language, @Value("${locale.country:}") String country) {
-        this.language = language;
-        this.country = country;
+    public MessageLocalizationServiceImpl(MessageSource messageSource, AppPropsService appPropsService) {
+        this.language = appPropsService.getLanguage();
+        this.country = appPropsService.getCountry();
         this.messageSource = messageSource;
         locale = new Locale(language, country);
     }

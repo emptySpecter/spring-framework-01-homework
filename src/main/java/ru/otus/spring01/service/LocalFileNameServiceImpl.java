@@ -1,6 +1,5 @@
 package ru.otus.spring01.service;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.otus.spring01.Main;
 
@@ -16,10 +15,10 @@ public class LocalFileNameServiceImpl implements LocalFileNameService {
     private String language;
     private String country;
 
-    public LocalFileNameServiceImpl(@Value("${testfile}") String path, @Value("${locale.language:}") String language, @Value("${locale.country:}") String country) {
-        this.path = path;
-        this.language = language;
-        this.country = country;
+    public LocalFileNameServiceImpl(AppPropsService appPropsService) {
+        this.path = appPropsService.getTestfileName();
+        this.language = appPropsService.getLanguage();
+        this.country = appPropsService.getCountry();
     }
 
     @Override
