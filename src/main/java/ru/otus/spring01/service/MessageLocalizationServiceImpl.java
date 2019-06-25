@@ -15,8 +15,8 @@ public class MessageLocalizationServiceImpl implements MessageLocalizationServic
 
 
     public MessageLocalizationServiceImpl(MessageSource messageSource, AppProps appPropsService) {
-        this.language = appPropsService.getLanguage();
-        this.country = appPropsService.getCountry();
+        this.language = appPropsService.getLocaleLanguage();
+        this.country = appPropsService.getLocaleCountry();
         this.messageSource = messageSource;
         locale = new Locale(language, country);
     }
