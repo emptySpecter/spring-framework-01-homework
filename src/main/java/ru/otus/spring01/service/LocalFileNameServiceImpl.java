@@ -15,7 +15,7 @@ public class LocalFileNameServiceImpl implements LocalFileNameService {
     private String language;
     private String country;
 
-    public LocalFileNameServiceImpl(AppPropsService appPropsService) {
+    public LocalFileNameServiceImpl(AppProps appPropsService) {
         this.path = appPropsService.getTestfileName();
         this.language = appPropsService.getLanguage();
         this.country = appPropsService.getCountry();

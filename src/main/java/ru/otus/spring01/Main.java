@@ -3,9 +3,6 @@ package ru.otus.spring01;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import ru.otus.spring01.dao.TestDao;
-import ru.otus.spring01.dao.TestDaoCSV;
-import ru.otus.spring01.service.LocalFileNameService;
 import ru.otus.spring01.service.TestingRunnerService;
 
 @PropertySource("classpath:application.properties")
@@ -19,12 +16,6 @@ public class Main {
         context.refresh();
         TestingRunnerService testingRunnerService = context.getBean(TestingRunnerService.class);
         testingRunnerService.startTesing();
-    }
-
-    @Bean
-    public static TestDao testDao(LocalFileNameService localFileNameService) {
-
-        return new TestDaoCSV(localFileNameService.get());
     }
 
     @Bean
