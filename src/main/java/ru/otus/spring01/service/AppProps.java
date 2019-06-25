@@ -1,29 +1,30 @@
 package ru.otus.spring01.service;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
-@ConfigurationProperties
+@ConfigurationProperties("application")
 public class AppProps {
-    private String localeLanguage;
-    private String localeCountry;
     private String testfile;
+    private Map<String, String> locale;
 
-//    public AppProps(@Value("${testfile}") String fileName, @Value("${locale.localeLanguage:}") String localeLanguage, @Value("${locale.localeCountry:}") String localeCountry) {
-//        this.localeLanguage = localeLanguage;
-//        this.localeCountry = localeCountry;
-//        this.testfile = fileName;
-//    }
-
+    public void setLocale(Map<String, String> locale) {
+        this.locale = locale;
+    }
 
     public String getLocaleLanguage() {
-        return localeLanguage;
+        return locale.get("language");
     }
 
     public String getLocaleCountry() {
-        return localeCountry;
+        return locale.get("country");
+    }
+
+    public void setTestfile(String testfile) {
+        this.testfile = testfile;
     }
 
     public String getTestfileName() {

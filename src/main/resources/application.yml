@@ -1,7 +1,6 @@
-
-testfile: test.csv
-
-locale:
-  language: en
-  country: EN
+application:
+  testfile: test.csv
+  locale:
+    language: en
+    country: EN
 
