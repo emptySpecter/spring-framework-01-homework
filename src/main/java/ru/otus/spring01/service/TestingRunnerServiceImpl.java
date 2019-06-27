@@ -7,9 +7,9 @@ import ru.otus.spring01.domain.TestReport;
 @Service
 @AllArgsConstructor
 public class TestingRunnerServiceImpl implements TestingRunnerService {
-    private TestService testService;
-    private StudentService studentService;
-    private TestingService testingService;
+    private final TestService testService;
+    private final StudentService studentService;
+    private final TestingService testingService;
 
     @Override
     public void startTesing() {

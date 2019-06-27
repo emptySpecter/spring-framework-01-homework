@@ -15,8 +15,8 @@ public class StudentServiceImpl implements StudentService {
     private static final String LASTNAME_ADVICE = "lastname.advice";
     private static final String CONFIRMATION = "confirmation";
 
-    private CommunicationService console;
-    private MessageLocalizationService localizationService;
+    private final CommunicationService console;
+    private final MessageLocalizationService localizationService;
     private Pattern namePattern;
 
     public StudentServiceImpl(CommunicationService console, MessageLocalizationService localizationService) {

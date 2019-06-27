@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 @Service
 public class CommunicationServiceImpl implements CommunicationService {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public void writeLine(String string) {

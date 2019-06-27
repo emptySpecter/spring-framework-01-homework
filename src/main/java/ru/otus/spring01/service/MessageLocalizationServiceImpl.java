@@ -7,11 +7,11 @@ import java.util.Locale;
 
 @Component
 public class MessageLocalizationServiceImpl implements MessageLocalizationService {
-    private String language;
-    private String country;
-    private MessageSource messageSource;
-    private String[] strings = {};
-    private Locale locale;
+    private final String language;
+    private final String country;
+    private final MessageSource messageSource;
+    private final Locale locale;
+    private final String[] strings = {};
 
 
     public MessageLocalizationServiceImpl(MessageSource messageSource, AppProps appPropsService) {

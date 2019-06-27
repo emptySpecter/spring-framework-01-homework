@@ -9,9 +9,9 @@ import java.util.List;
 @ToString
 public class Question {
 
-    private String question;
-    private List<String> answers;
-    private int correctAnswer;
+    private final String question;
+    private final List<String> answers;
+    private final int correctAnswer;
 
     public Question(String question, List<String> answers, int correctAnswer) {
         this.question = question;

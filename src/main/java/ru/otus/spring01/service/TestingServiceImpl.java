@@ -16,8 +16,8 @@ public class TestingServiceImpl implements TestingService {
     private static final String REPORT_LINE_2 = "report.line2";
     private static final String REPORT_LINE_3 = "report.line3";
 
-    private CommunicationService console;
-    private MessageLocalizationService localizationService;
+    private final CommunicationService console;
+    private final MessageLocalizationService localizationService;
 
 
     public TestingServiceImpl(CommunicationService console, MessageLocalizationService localizationService) {

@@ -6,9 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class TestReport {
-
-    private Student student;
-
-    private int numberOfQuestions;
-    private int numberOfPositiveAnswers;
+    private final Student student;
+    private final int numberOfQuestions;
+    private final int numberOfPositiveAnswers;
 }

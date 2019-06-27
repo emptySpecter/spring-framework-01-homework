@@ -18,7 +18,7 @@ import java.util.Scanner;
 @Getter
 public class TestDaoCSV implements TestDao {
 
-    private Test test;
+    private final Test test;
 
     public TestDaoCSV(LocalFileNameService fileNameService) {
         URI uri = fileNameService.get();
