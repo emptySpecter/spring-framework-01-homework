@@ -1,6 +1,8 @@
 application:
   testfile: test.csv
   locale:
-    language: en
-    country: EN
-
+    language: ru
+    country: RU
+  messagesource:
+    basename: /i18n/bundle
+    defaultencoding: UTF-8
