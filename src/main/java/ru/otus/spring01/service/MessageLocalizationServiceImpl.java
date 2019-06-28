@@ -1,11 +1,12 @@
 package ru.otus.spring01.service;
 
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import ru.otus.spring01.settings.AppProps;
 
 import java.util.Locale;
 
-@Component
+@Service
 public class MessageLocalizationServiceImpl implements MessageLocalizationService {
     private final String language;
     private final String country;

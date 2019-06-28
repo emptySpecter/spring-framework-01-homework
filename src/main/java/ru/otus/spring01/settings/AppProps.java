@@ -1,4 +1,4 @@
-package ru.otus.spring01.service;
+package ru.otus.spring01.settings;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,6 @@ import java.util.Map;
 public class AppProps {
     private String testfile;
     private Map<String, String> locale;
-    private Map<String, String> messagesource;
 
     public void setLocale(Map<String, String> locale) {
         this.locale = locale;
@@ -32,11 +31,4 @@ public class AppProps {
         return testfile;
     }
 
-    public Map<String, String> getMessagesource() {
-        return messagesource;
-    }
-
-    public void setMessagesource(Map<String, String> messagesource) {
-        this.messagesource = messagesource;
-    }
 }

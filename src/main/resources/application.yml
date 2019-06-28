@@ -1,8 +1,13 @@
 application:
   testfile: test.csv
   locale:
-    language: ru
-    country: RU
-  messagesource:
-    basename: /i18n/bundle
-    defaultencoding: UTF-8
+    language: en
+    country: EN
+
+spring:
+  profiles:
+    active: messages
+
+logging:
+  level:
+    root: DEBUG

@@ -1,0 +1,9 @@
+application:
+  locale:
+    language: en
+    country: EN
+
+messages:
+  basenames:
+    - /i18n/validation
+  defaultencoding: UTF-8

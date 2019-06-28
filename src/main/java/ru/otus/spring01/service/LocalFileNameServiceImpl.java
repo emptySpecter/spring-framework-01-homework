@@ -2,6 +2,7 @@ package ru.otus.spring01.service;
 
 import org.springframework.stereotype.Service;
 import ru.otus.spring01.Main;
+import ru.otus.spring01.settings.AppProps;
 
 import java.net.URI;
 import java.net.URISyntaxException;

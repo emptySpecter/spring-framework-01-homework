@@ -1,0 +1,5 @@
+messages:
+  basenames:
+    - /i18n/testing
+    - /i18n/validation
+  defaultencoding: UTF-8
