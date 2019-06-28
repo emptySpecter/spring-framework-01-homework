@@ -22,7 +22,7 @@ public class SpringBootStopper {
 
     @Bean
     CommunicationService communicationServiceTest() {
-        return new CommunicationServiceImpl();
+        return new CommunicationServiceImpl(System.in,System.out);
     }
 
     @Bean

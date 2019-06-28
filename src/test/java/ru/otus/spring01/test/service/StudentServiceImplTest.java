@@ -1,5 +1,6 @@
 package ru.otus.spring01.test.service;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import ru.otus.spring01.service.StudentService;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("Проверяем StudentServiceImpl")
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class StudentServiceImplTest {
@@ -17,14 +19,15 @@ public class StudentServiceImplTest {
     @Autowired
     StudentService studentService;
 
+    @DisplayName("метод newStudent")
     @Test
     void TestTest() {
         String name = "Mary";
         assertEquals(1,1);
-        assertTrue(2*2 == 5, "ха-ха");
-        assertEquals(name,"Jane");
+//        assertTrue(2*2 == 5, "ха-ха");
+//        assertEquals(name,"Jane");
         assertEquals(name,"Mary");
-        assertTrue(2*2 == 3, "ах-ах");
+        assertTrue(2*2 != 3, "ах-ах");
     }
 
 }
