@@ -8,6 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.TestPropertySource;
 import ru.otus.spring01.service.*;
 import ru.otus.spring01.settings.AppProps;
+import ru.otus.spring01.test.service.consoleproxy.InputProxy;
+import ru.otus.spring01.test.service.consoleproxy.OutputProxy;
 
 @TestPropertySource("classpath:test.yml")
 @EnableConfigurationProperties
@@ -22,7 +24,7 @@ public class SpringBootStopper {
 
     @Bean
     CommunicationService communicationServiceTest() {
-        return new CommunicationServiceImpl(System.in,System.out);
+        return new CommunicationServiceImpl(new InputProxy(""), new OutputProxy());
     }
 
     @Bean

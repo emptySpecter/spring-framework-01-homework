@@ -8,9 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.otus.spring01.service.StudentService;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 @DisplayName("Проверяем StudentServiceImpl")
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -21,13 +18,7 @@ public class StudentServiceImplTest {
 
     @DisplayName("метод newStudent")
     @Test
-    void TestTest() {
-        String name = "Mary";
-        assertEquals(1,1);
-//        assertTrue(2*2 == 5, "ха-ха");
-//        assertEquals(name,"Jane");
-        assertEquals(name,"Mary");
-        assertTrue(2*2 != 3, "ах-ах");
+    void newStudentTest() {
     }
 
 }

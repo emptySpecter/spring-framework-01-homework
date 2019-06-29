@@ -1,5 +1,5 @@
 messages:
   basenames:
-    - /i18n/testing
     - /i18n/validation
+    - /i18n/testing
   defaultencoding: UTF-8

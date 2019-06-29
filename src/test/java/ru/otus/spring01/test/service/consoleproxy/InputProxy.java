@@ -1,14 +1,20 @@
 package ru.otus.spring01.test.service.consoleproxy;
 
+import ru.otus.spring01.service.InProxy;
+
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-public class InputProxy extends ByteArrayInputStream {
+public class InputProxy implements InProxy {
+    private String inString;
 
     public InputProxy(String inString) {
-         super(inString.getBytes(StandardCharsets.UTF_8));
-         int cnt = count;
+        this.inString = inString;
     }
- }
+
+    @Override
+    public InputStream getIn() {
+        return new ByteArrayInputStream(inString.getBytes(StandardCharsets.UTF_8));
+    }
+}
