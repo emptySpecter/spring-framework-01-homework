@@ -9,17 +9,16 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
 
 @Service
 public class LocalFileNameServiceImpl implements LocalFileNameService {
     private final String path;
-    private final String language;
-    private final String country;
+    private final Locale locale;
 
     public LocalFileNameServiceImpl(AppProps appProps) {
         this.path = appProps.getTestfileName();
-        this.language = appProps.getLocaleLanguage();
-        this.country = appProps.getLocaleCountry();
+        this.locale = appProps.getJavaLocale();
     }
 
     @Override
@@ -48,7 +47,7 @@ public class LocalFileNameServiceImpl implements LocalFileNameService {
             beginPart = path;
             endPart = "";
         }
-        Path probePath = Paths.get(beginPart + "_" + language + "_" + country + endPart);
+        Path probePath = Paths.get(beginPart + "_" + locale.toString() + endPart);
         if (probePath.toFile().exists()) {
             uri = probePath.toUri();
         } else {

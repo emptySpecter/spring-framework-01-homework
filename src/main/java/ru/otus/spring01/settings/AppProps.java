@@ -3,25 +3,14 @@ package ru.otus.spring01.settings;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
 import java.util.Map;
 
 @Component
 @ConfigurationProperties("application")
 public class AppProps {
     private String testfile;
-    private Map<String, String> locale;
-
-    public void setLocale(Map<String, String> locale) {
-        this.locale = locale;
-    }
-
-    public String getLocaleLanguage() {
-        return locale.get("language");
-    }
-
-    public String getLocaleCountry() {
-        return locale.get("country");
-    }
+    private Locale javaLocale;
 
     public void setTestfile(String testfile) {
         this.testfile = testfile;
@@ -31,4 +20,11 @@ public class AppProps {
         return testfile;
     }
 
+    public void setLocale(Map<String, String> locale) {
+        javaLocale = new Locale(locale.get("language"), locale.get("country"));
+    }
+
+    public Locale getJavaLocale() {
+        return javaLocale;
+    }
 }

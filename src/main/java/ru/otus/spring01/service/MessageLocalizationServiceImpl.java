@@ -1,34 +1,29 @@
 package ru.otus.spring01.service;
 
-import org.springframework.context.MessageSource;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 import ru.otus.spring01.settings.AppProps;
 
 import java.util.Locale;
 
 @Service
-public class MessageLocalizationServiceImpl implements MessageLocalizationService {
-    private final String language;
-    private final String country;
-    private final MessageSource messageSource;
+@ConfigurationProperties("messages")
+public class MessageLocalizationServiceImpl extends ReloadableResourceBundleMessageSource implements MessageLocalizationService {
     private final Locale locale;
     private final String[] strings = {};
 
-
-    public MessageLocalizationServiceImpl(MessageSource messageSource, AppProps appPropsService) {
-        this.language = appPropsService.getLocaleLanguage();
-        this.country = appPropsService.getLocaleCountry();
-        this.messageSource = messageSource;
-        locale = new Locale(language, country);
+    public MessageLocalizationServiceImpl(AppProps appPropsService) {
+        locale = appPropsService.getJavaLocale();
     }
 
     @Override
     public String getLocalMessage(String message) {
-        return messageSource.getMessage(message, strings, locale);
+        return getMessage(message, strings, locale);
     }
 
     @Override
     public String getLocalMessageParams(String message, String[] params) {
-        return messageSource.getMessage(message, params, locale);
+        return getMessage(message, params, locale);
     }
 }

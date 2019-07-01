@@ -1,11 +1,9 @@
 package ru.otus.spring01.test.service;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.otus.spring01.service.CommunicationServiceImpl;
 import ru.otus.spring01.service.InProxy;
 import ru.otus.spring01.service.OutProxy;
@@ -19,8 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Проверяем CommunicationServiceImpl")
 @SpringBootTest
-@ExtendWith(SpringExtension.class)
 public class CommunicationServiceImpleTest {
+
+    private static final String EOL = System.getProperty("line.separator");
 
     @DisplayName("метод writeLine")
     @ParameterizedTest
@@ -31,7 +30,7 @@ public class CommunicationServiceImpleTest {
         CommunicationServiceImpl console = new CommunicationServiceImpl(inProxy, outProxy);
         console.writeLine(outString);
         String outputString = outProxy.getBaos().toString(String.valueOf(StandardCharsets.UTF_8));
-        assertEquals(outString + "\r\n", outputString);
+        assertEquals(outString + EOL, outputString);
     }
 
     @DisplayName("метод readLine")

@@ -2,7 +2,6 @@ package ru.otus.spring01.test;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.TestPropertySource;
@@ -18,8 +17,8 @@ import ru.otus.spring01.test.service.consoleproxy.OutputProxy;
 public class SpringBootStopper {
 
     @Bean
-    public MessageLocalizationService messageLocalizationServiceTest(MessageSource messageSource, AppProps appProps) {
-        return new MessageLocalizationServiceImpl(messageSource, appProps);
+    public MessageLocalizationService messageLocalizationServiceTest(AppProps appProps) {
+        return new MessageLocalizationServiceImpl(appProps);
     }
 
     @Bean
