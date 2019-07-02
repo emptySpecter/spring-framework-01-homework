@@ -26,6 +26,7 @@ import static org.mockito.BDDMockito.given;
 public class CommunicationServiceImplTest {
 
     private static final String EOL = System.getProperty("line.separator");
+
     @MockBean
     private ConsoleContext consoleContext;
 

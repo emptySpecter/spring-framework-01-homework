@@ -1,7 +1,7 @@
 application:
   locale:
-    language: ru
-    country: RU
+    language: en
+    country: EN
 
 messages:
   basenames:
