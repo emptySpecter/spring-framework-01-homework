@@ -1,8 +1,10 @@
 package ru.otus.spring01.dao;
 
 import lombok.Getter;
+import org.springframework.stereotype.Service;
 import ru.otus.spring01.domain.Question;
 import ru.otus.spring01.domain.Test;
+import ru.otus.spring01.service.LocalFileNameService;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,13 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
+@Service
 @Getter
 public class TestDaoCSV implements TestDao {
 
-    private Test test;
+    private final Test test;
 
-    public TestDaoCSV(URI uri) {
+    public TestDaoCSV(LocalFileNameService fileNameService) {
+        URI uri = fileNameService.get();
         Scanner scanner = null;
         try {
             scanner = new Scanner(Paths.get(uri));

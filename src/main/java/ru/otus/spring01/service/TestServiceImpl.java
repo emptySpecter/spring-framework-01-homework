@@ -9,7 +9,7 @@ import ru.otus.spring01.domain.Test;
 @AllArgsConstructor
 public class TestServiceImpl implements TestService {
 
-    private TestDao dao;
+    private final TestDao dao;
 
     @Override
     public Test getTest() {

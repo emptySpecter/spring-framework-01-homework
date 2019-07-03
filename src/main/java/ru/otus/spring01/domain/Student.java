@@ -8,6 +8,6 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class Student {
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 }

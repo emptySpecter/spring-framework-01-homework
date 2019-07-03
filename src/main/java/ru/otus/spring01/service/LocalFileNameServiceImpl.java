@@ -1,24 +1,24 @@
 package ru.otus.spring01.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.otus.spring01.Main;
+import ru.otus.spring01.settings.AppProps;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
 
-@Component
+@Service
 public class LocalFileNameServiceImpl implements LocalFileNameService {
-    private String path;
-    private String language;
-    private String country;
+    private final String path;
+    private final Locale locale;
 
-    public LocalFileNameServiceImpl(AppPropsService appPropsService) {
-        this.path = appPropsService.getTestfileName();
-        this.language = appPropsService.getLanguage();
-        this.country = appPropsService.getCountry();
+    public LocalFileNameServiceImpl(AppProps appProps) {
+        this.path = appProps.getTestfileName();
+        this.locale = appProps.getJavaLocale();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LocalFileNameServiceImpl implements LocalFileNameService {
             beginPart = path;
             endPart = "";
         }
-        Path probePath = Paths.get(beginPart + "_" + language + "_" + country + endPart);
+        Path probePath = Paths.get(beginPart + "_" + locale.toString() + endPart);
         if (probePath.toFile().exists()) {
             uri = probePath.toUri();
         } else {

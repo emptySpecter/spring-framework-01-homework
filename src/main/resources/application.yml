@@ -1,0 +1,13 @@
+application:
+  testfile: test.csv
+  locale:
+    language: en
+    country: EN
+
+spring:
+  profiles:
+    active: messages
+
+logging:
+  level:
+    root: DEBUG

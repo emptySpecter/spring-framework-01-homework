@@ -1,20 +1,20 @@
 package ru.otus.spring01.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Scanner;
-
 @Service
+@RequiredArgsConstructor
 public class CommunicationServiceImpl implements CommunicationService {
-    private Scanner scanner = new Scanner(System.in);
+    private final ConsoleContext ctx;
 
     @Override
     public void writeLine(String string) {
-        System.out.println(string);
+        ctx.getOut().println(string);
     }
 
     @Override
     public String readLine() {
-        return scanner.nextLine();
+        return ctx.getIn().nextLine();
     }
 }

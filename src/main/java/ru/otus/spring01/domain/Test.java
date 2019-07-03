@@ -8,5 +8,5 @@ import java.util.List;
 @AllArgsConstructor
 public class Test {
     @Getter
-    private List<Question> questions;
+    private final List<Question> questions;
 }
