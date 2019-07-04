@@ -56,6 +56,7 @@ public class StudentServiceImplTest {
         return new Scanner(new ByteArrayInputStream(inString.getBytes(StandardCharsets.UTF_8)));
     }
 
+    //prepare data for newStudentValidationOfConversationTest
     private static Stream<Arguments> stringIntAndListProvider() {
         if (locale.equals(new Locale("ru", "RU"))) {
             return Stream.of(
