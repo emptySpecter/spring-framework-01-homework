@@ -6,8 +6,15 @@ application:
 
 spring:
   profiles:
-    active: messages
+    active: messages, shell
+  shell:
+    interactive:
+      enabled: false
 
 logging:
   level:
     root: DEBUG
+
+  shell:
+    interactive:
+      enabled: true

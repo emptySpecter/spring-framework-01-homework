@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import ru.otus.spring01.service.CommunicationServiceImpl;
-import ru.otus.spring01.service.ConsoleContext;
+import ru.otus.spring01.service.ConsoleContextSimple;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -28,7 +28,7 @@ public class CommunicationServiceImplTest {
     private static final String EOL = System.getProperty("line.separator");
 
     @MockBean
-    private ConsoleContext consoleContext;
+    private ConsoleContextSimple consoleContext;
 
     @Autowired
     private CommunicationServiceImpl communicationService;

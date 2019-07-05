@@ -4,7 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import ru.otus.spring01.service.ConsoleContext;
+import ru.otus.spring01.service.ConsoleContextSimple;
 import ru.otus.spring01.service.TestingRunnerService;
 
 import java.nio.charset.StandardCharsets;
@@ -19,8 +21,9 @@ public class Main {
         testingRunnerService.startTesing();
     }
 
+    @Profile("!shell")
     @Bean
     public ConsoleContext consoleContext() {
-        return new ConsoleContext(System.out, new Scanner(System.in, String.valueOf(StandardCharsets.UTF_8)));
+        return new ConsoleContextSimple(System.out, new Scanner(System.in, String.valueOf(StandardCharsets.UTF_8)));
     }
 }
