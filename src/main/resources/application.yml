@@ -6,7 +6,7 @@ application:
 
 spring:
   profiles:
-    active: messages, shell
+    active: messages
   shell:
     interactive:
       enabled: true

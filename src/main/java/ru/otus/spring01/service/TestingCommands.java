@@ -1,7 +1,7 @@
 package ru.otus.spring01.service;
 
 
-import org.springframework.context.annotation.Profile;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -9,8 +9,8 @@ import org.springframework.shell.standard.ShellMethodAvailability;
 import ru.otus.spring01.domain.Student;
 import ru.otus.spring01.domain.TestReport;
 
-@Profile("shell")
 @ShellComponent
+@ConditionalOnProperty(prefix = "spring.shell.interactive", name = "enabled", havingValue = "true")
 public class TestingCommands {
     private final StudentService studentService;
     private final TestService testService;
@@ -25,9 +25,10 @@ public class TestingCommands {
         this.testingService = testingService;
     }
 
-    @ShellMethod(value = "New student command", key = {"ns", "student"})
+    @ShellMethod(value = "New student command", key = {"s", "student"})
     public void newStudent() {
         student = studentService.newStudent();
+        testReport = null;
     }
 
     @ShellMethod(value = "Testing students", key = {"t", "testing"})
