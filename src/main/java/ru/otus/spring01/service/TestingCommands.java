@@ -17,7 +17,7 @@ public class TestingCommands {
     private final TestingService testingService;
 
     private Student student;
-    private  TestReport testReport;
+    private TestReport testReport;
 
     public TestingCommands(StudentService studentService, TestService testService, TestingService testingService) {
         this.studentService = studentService;
@@ -32,22 +32,22 @@ public class TestingCommands {
 
     @ShellMethod(value = "Testing students", key = {"t", "testing"})
     @ShellMethodAvailability(value = "studentExist")
-    public void testing(){
-      testReport = testingService.testing(student, testService.getTest());
+    public void testing() {
+        testReport = testingService.testing(student, testService.getTest());
     }
 
     private Availability studentExist() {
-        return student == null? Availability.unavailable("You must create new student before"): Availability.available();
+        return student == null ? Availability.unavailable("You must create new student before") : Availability.available();
     }
 
     @ShellMethod(value = "Show test results", key = {"r", "result"})
     @ShellMethodAvailability(value = "reportExist")
-    public void printTestResults(){
+    public void printTestResults() {
         testingService.printReport(testReport);
     }
 
     private Availability reportExist() {
-        return testReport == null? Availability.unavailable("You must pass test before"): Availability.available();
+        return testReport == null ? Availability.unavailable("You must pass test before") : Availability.available();
     }
 
 }

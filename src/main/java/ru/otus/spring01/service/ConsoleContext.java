@@ -1,7 +1,6 @@
 package ru.otus.spring01.service;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.io.PrintStream;
 import java.util.Scanner;

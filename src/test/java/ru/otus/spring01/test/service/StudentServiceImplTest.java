@@ -10,7 +10,10 @@ import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import ru.otus.spring01.service.*;
+import ru.otus.spring01.service.CommunicationServiceImpl;
+import ru.otus.spring01.service.ConsoleContextSimple;
+import ru.otus.spring01.service.MessageLocalizationServiceImpl;
+import ru.otus.spring01.service.StudentServiceImpl;
 import ru.otus.spring01.settings.AppProps;
 
 import java.io.ByteArrayInputStream;
