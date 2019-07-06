@@ -9,12 +9,8 @@ spring:
     active: messages, shell
   shell:
     interactive:
-      enabled: false
+      enabled: true
 
 logging:
   level:
     root: DEBUG
-
-  shell:
-    interactive:
-      enabled: true

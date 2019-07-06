@@ -1,11 +1,15 @@
 package ru.otus.spring01.service;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public interface ConsoleContext {
-    void setOut(PrintStream printStream);
-    PrintStream getOut();
-    void setIn(Scanner scanner);
-    Scanner getIn();
+
+@Getter
+public class ConsoleContext {
+    protected PrintStream out;
+    protected Scanner in;
+
 }

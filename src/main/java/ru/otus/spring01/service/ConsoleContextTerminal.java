@@ -12,36 +12,11 @@ import java.util.Scanner;
 
 @Profile("shell")
 @Component
-public class ConsoleContextTerminal implements ConsoleContext{
+public class ConsoleContextTerminal extends ConsoleContext{
 
-    private Terminal terminal;
-    private Scanner in;
-    private PrintStream out;
-
-    @Autowired
-    public void setTerminal(Terminal terminal) throws UnsupportedEncodingException {
-        this.terminal = terminal;
+    public ConsoleContextTerminal(Terminal terminal) throws UnsupportedEncodingException {
         in = new Scanner(terminal.input(),"UTF-8");
         out = new PrintStream(terminal.output(),true,"UTF-8");
     }
 
-    @Override
-    public void setOut(PrintStream printStream) {
-
-    }
-
-    @Override
-    public PrintStream getOut() {
-        return null;
-    }
-
-    @Override
-    public void setIn(Scanner scanner) {
-
-    }
-
-    @Override
-    public Scanner getIn() {
-        return null;
-    }
 }

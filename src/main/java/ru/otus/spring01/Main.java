@@ -21,9 +21,4 @@ public class Main {
         testingRunnerService.startTesing();
     }
 
-    @Profile("!shell")
-    @Bean
-    public ConsoleContext consoleContext() {
-        return new ConsoleContextSimple(System.out, new Scanner(System.in, String.valueOf(StandardCharsets.UTF_8)));
-    }
 }
