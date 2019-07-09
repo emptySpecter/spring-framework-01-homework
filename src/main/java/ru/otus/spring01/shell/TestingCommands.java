@@ -1,4 +1,4 @@
-package ru.otus.spring01.service;
+package ru.otus.spring01.shell;
 
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -8,6 +8,9 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
 import ru.otus.spring01.domain.Student;
 import ru.otus.spring01.domain.TestReport;
+import ru.otus.spring01.service.StudentService;
+import ru.otus.spring01.service.TestService;
+import ru.otus.spring01.service.TestingService;
 
 @ShellComponent
 @ConditionalOnProperty(prefix = "spring.shell.interactive", name = "enabled", havingValue = "true")
