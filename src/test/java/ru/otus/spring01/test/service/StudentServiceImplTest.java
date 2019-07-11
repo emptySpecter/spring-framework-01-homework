@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.otus.spring01.service.CommunicationServiceImpl;
-import ru.otus.spring01.service.ConsoleContext;
+import ru.otus.spring01.service.ConsoleContextSimple;
 import ru.otus.spring01.service.MessageLocalizationServiceImpl;
 import ru.otus.spring01.service.StudentServiceImpl;
 import ru.otus.spring01.settings.AppProps;
@@ -50,12 +50,13 @@ public class StudentServiceImplTest {
     @Autowired
     private MessageLocalizationServiceImpl messageLocalizationService;
     @MockBean
-    private ConsoleContext consoleContext;
+    private ConsoleContextSimple consoleContext;
 
     private static Scanner prepareInput(String inString) {
         return new Scanner(new ByteArrayInputStream(inString.getBytes(StandardCharsets.UTF_8)));
     }
 
+    //prepare data for newStudentValidationOfConversationTest
     private static Stream<Arguments> stringIntAndListProvider() {
         if (locale.equals(new Locale("ru", "RU"))) {
             return Stream.of(
